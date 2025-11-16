@@ -70,6 +70,50 @@ Example json structure:
 ## Contact us form
 Location: it has it's dedicated url `/contact`.
 
+This is a form with the following fields:
+- First Name
+    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
+- Last Name
+    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
+- Phone number (optional)
+    - Input validation: Only numbers, space, '-' and '+' characters are allowed. Must conatain at least 5 numbers.
+- Email
+    - Input validation: Must be a valid email address.
+- Message
+    - Input validation: Must be at least 10 characters long.
+- CTA_1 - Submit button
+    - By submitting the form, it sends a POST request to the Contract end-point.
+    - After receiving http 200 the "Thank you for your message!" will apear on the form.
+- CTA_2 - Cancle button
+    - Navigates back to the main page #services section.
+
+Submitted contact requests are persisted into a [`contact_request.json`](./contact_request.json) file. If the file already exists, it is appended by the new record.
+
+Example json structure:
+```json
+[
+  {
+    "id": 1,
+    "timestamp": "2025-11-16T19:45:00Z",
+    "first_name": "Alice",
+    "last_name": "Johnson",
+    "phone_number": "555-123-4567",
+    "email": "alice.j@example.com",
+    "message": "We are interested in your cloud infrastructure setup service. Could we schedule a consultation next week?",
+    "status": "New"
+  },
+  {
+    "id": 2,
+    "timestamp": "2025-11-15T10:22:30Z",
+    "first_name": "Bob",
+    "last_name": "Smith",
+    "phone_number": null,
+    "email": "bob.s@anotherco.org",
+    "message": "I need pricing details for the Data Analytics Reporting service. Please send a detailed quote.",
+    "status": "In Progress"
+  }
+]
+```
 
 
 ## Logo cloud
@@ -139,4 +183,10 @@ Footer is always on the buttom of the page, and present on each page.
 - [AlpineJS](https://alpinejs.dev/) with CDN import or creating my own JS.
 
 ## CSS
-- For the whole project I use [Pure.css](https://pure-css.github.io/) added by the [CDN option](https://pure-css.github.io/start/#add-pure-to-your-page) and for the contact us form I'll write my own css file. 
+- For the whole project I use [Tailwind.css](https://tailwindcss.com/) added by the [CDN option](https://tailwindcss.com/docs/installation/play-cdn) and for the contact us form I'll write my own css file. 
+
+### Color palette
+- #0A0506 -- Dark
+- #9FB2B2 -- Light
+- #5AACA5 -- Primary
+- #EE9198 -- Secondary

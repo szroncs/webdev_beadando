@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "timestamp": "2025-11-16T19:45:00Z",
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "phone_number": "555-123-4567",
+        "email": "alice.j@example.com",
+        "message": "We are interested in your cloud infrastructure setup service. Could we schedule a consultation next week?",
+        "status": "New"
+    },
+    {
+        "id": 2,
+        "timestamp": "2025-11-15T10:22:30Z",
+        "first_name": "Bob",
+        "last_name": "Smith",
+        "phone_number": null,
+        "email": "bob.s@anotherco.org",
+        "message": "I need pricing details for the Data Analytics Reporting service. Please send a detailed quote.",
+        "status": "In Progress"
+    },
+    {
+        "id": 3,
+        "timestamp": "2025-11-14T08:00:15Z",
+        "first_name": "Carol",
+        "last_name": "Díaz",
+        "phone_number": "555-987-6543",
+        "email": "carol.d@webmail.net",
+        "message": "My company requires a new mobile app UI/UX design. We have a strict deadline of three months.",
+        "status": "Completed"
+    }
+]
