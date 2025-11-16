@@ -1,26 +1,7 @@
 # Planning out the web application
 
-## Routing
-
-We need a home route `/`. Everything not handled by the other routes, should fall back to the home route. 
-
-Dedicated pages:
-- A logo page route `/logo-1`, `/logo-2` ... `/logo-n`
-- A contact us route `/contact` for the form
-
-
-## Handlers
-
-We will use HTTP verb specific handlers.
-- For HOME -> GET
-- For LOGO{id} -> GET
-- For CONTACT -> GET, POST
-
-
-# Pages
 
 ## HOME
-
 
 
 ### Hero section
@@ -29,18 +10,12 @@ Location: it's part of the root url `/` and have the in page anchor of #hero.
 - CTA1 - Services button pointing to the [services section](#services-section)
 - CTA2 - Conact us button pointing to the [about us section](#about-us-section)
 
-
-### About us section   
-Location: it's part of the root url `/` and have the in page anchor of #about-us.
-
-From here the user can navigate to the [Contact us form](#contact-us-form), and submit a contact request. 
-
 ### Services section
 Location: it's part of the root url `/` and have the in page anchor of #services.
 
 Services are loaded from the [`services.json`](./services.json) file. Each service and the related information is renderd to a dedicated card on a carousel.
 
-Example json structure:
+#### Example json structure:
 ```json
 [
   {
@@ -62,7 +37,7 @@ Example json structure:
 ]
 ```
 
-Go struct:
+#### Go struct:
 ```go
 type Service struct {
     ID          int      `json:"id"`
@@ -77,89 +52,12 @@ type Service struct {
 type Services []Service
 ```
 
-
-## Contact us form
-Location: it has it's dedicated url `/contact`.
-
-This is a form with the following fields:
-- First Name
-    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
-- Last Name
-    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
-- Phone number (optional)
-    - Input validation: Only numbers, space, '-' and '+' characters are allowed. Must conatain at least 5 numbers.
-- Email
-    - Input validation: Must be a valid email address.
-- Message
-    - Input validation: Must be at least 10 characters long.
-- CTA_1 - Submit button
-    - By submitting the form, it sends a POST request to the Contract end-point.
-    - After receiving http 200 the "Thank you for your message!" will apear on the form.
-- CTA_2 - Cancle button
-    - Navigates back to the main page #services section.
-
-Submitted contact requests are persisted into a [`contact_request.json`](./contact_request.json) file. If the file already exists, it is appended by the new record.
-
-Example json structure:
-```json
-[
-  {
-    "id": 1,
-    "timestamp": "2025-11-16T19:45:00Z",
-    "first_name": "Alice",
-    "last_name": "Johnson",
-    "phone_number": "555-123-4567",
-    "email": "alice.j@example.com",
-    "message": "We are interested in your cloud infrastructure setup service. Could we schedule a consultation next week?",
-    "status": "New"
-  },
-  {
-    "id": 2,
-    "timestamp": "2025-11-15T10:22:30Z",
-    "first_name": "Bob",
-    "last_name": "Smith",
-    "phone_number": null,
-    "email": "bob.s@anotherco.org",
-    "message": "I need pricing details for the Data Analytics Reporting service. Please send a detailed quote.",
-    "status": "In Progress"
-  }
-]
-```
-
-Go struct Persisted Data Structure:
-```go
-type ContactRequest struct {
-    ID          int    `json:"id"`
-    Timestamp   string `json:"timestamp"`
-    FirstName   string `json:"first_name"`
-    LastName    string `json:"last_name"`
-    PhoneNumber *string `json:"phone_number"` // Pointer allows it to be null/omitted
-    Email       string `json:"email"`
-    Message     string `json:"message"`
-    Status      string `json:"status"`
-}
-
-// Top-level structure for the file
-type ContactRequests []ContactRequest
-```
-Go struct Form Data Structure:
-```go
-type ContactFormRequest struct {
-    FirstName string `json:"first_name" form:"first_name"`
-    LastName  string `json:"last_name" form:"last_name"`
-    Phone     string `json:"phone_number" form:"phone_number"` // May need to handle optionality
-    Email     string `json:"email" form:"email"`
-    Message   string `json:"message" form:"message"`
-}
-```
-
-
 ## Logo cloud
 Location: it's part of the root url `/` and have the in page anchor of #logo-cloud.
 
 Logos are on a carusel. By clicking any of them the corresponding page will be loaded. Logo cloud is defined by the [`logos.json`](./logos.json) file.
 
-Example json structure:
+#### Example json structure:
 ```json
 [
     {
@@ -186,9 +84,8 @@ Example json structure:
     },
 ]
 ```
-I need to parse the json file and map the content to a struct.
 
-Go struct:
+#### Go struct:
 ```go
 type Logo struct {
     ID              int    `json:"id"`
@@ -216,6 +113,86 @@ Location: it has it's dedicated url `/logo-{id}`.
 - The showcase image.
 - The date of delivery.
 
+### About us section   
+Location: it's part of the root url `/` and have the in page anchor of #about-us.
+
+From here the user can navigate to the [Contact us form](#contact-us-form), and submit a contact request. 
+
+
+## Contact us form
+Location: it has it's dedicated url `/contact`.
+
+This is a form with the following fields:
+- First Name
+    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
+- Last Name
+    - Input validation: must only contain letters and spaces. Numbers and special characters are not allowed.
+- Phone number (optional)
+    - Input validation: Only numbers, space, '-' and '+' characters are allowed. Must conatain at least 5 numbers.
+- Email
+    - Input validation: Must be a valid email address.
+- Message
+    - Input validation: Must be at least 10 characters long.
+- CTA_1 - Submit button
+    - By submitting the form, it sends a POST request to the Contract end-point.
+    - After receiving http 200 the "Thank you for your message!" will apear on the form.
+- CTA_2 - Cancle button
+    - Navigates back to the main page #services section.
+
+Submitted contact requests are persisted into a [`contact_request.json`](./contact_request.json) file. If the file already exists, it is appended by the new record.
+
+#### Example json structure:
+```json
+[
+  {
+    "id": 1,
+    "timestamp": "2025-11-16T19:45:00Z",
+    "first_name": "Alice",
+    "last_name": "Johnson",
+    "phone_number": "555-123-4567",
+    "email": "alice.j@example.com",
+    "message": "We are interested in your cloud infrastructure setup service. Could we schedule a consultation next week?",
+    "status": "New"
+  },
+  {
+    "id": 2,
+    "timestamp": "2025-11-15T10:22:30Z",
+    "first_name": "Bob",
+    "last_name": "Smith",
+    "phone_number": null,
+    "email": "bob.s@anotherco.org",
+    "message": "I need pricing details for the Data Analytics Reporting service. Please send a detailed quote.",
+    "status": "In Progress"
+  }
+]
+```
+
+#### Go struct Persisted Data Structure:
+```go
+type ContactRequest struct {
+    ID          int    `json:"id"`
+    Timestamp   string `json:"timestamp"`
+    FirstName   string `json:"first_name"`
+    LastName    string `json:"last_name"`
+    PhoneNumber *string `json:"phone_number"` // Pointer allows it to be null/omitted
+    Email       string `json:"email"`
+    Message     string `json:"message"`
+    Status      string `json:"status"`
+}
+
+// Top-level structure for the file
+type ContactRequests []ContactRequest
+```
+#### Go struct Form Data Structure:
+```go
+type ContactFormRequest struct {
+    FirstName string `json:"first_name" form:"first_name"`
+    LastName  string `json:"last_name" form:"last_name"`
+    Phone     string `json:"phone_number" form:"phone_number"` // May need to handle optionality
+    Email     string `json:"email" form:"email"`
+    Message   string `json:"message" form:"message"`
+}
+```
 
 # Partials
 These are reuseable components. Thet can be added to every page.
@@ -235,6 +212,19 @@ Footer is always on the buttom of the page, and present on each page.
 - File server for galery and other static files: [std - func FileServer](https://pkg.go.dev/net/http@go1.25.4#example-FileServer)
 - Database: this solution is not using any database, only the specified JSON files and the static files.
 
+## Routing
+We need a home route `/`. Everything not handled by the other routes, should fall back to the home route. 
+
+Dedicated pages:
+- A logo page route `/logo-1`, `/logo-2` ... `/logo-n`
+- A contact us route `/contact` for the form
+
+## Handlers
+We will use HTTP verb specific handlers.
+- For HOME -> GET
+- For LOGO{id} -> GET
+- For CONTACT -> GET, POST
+
 ## JS
 - Using just JavaScript code without any framework.
 
@@ -246,6 +236,91 @@ Use carousel to display the logos.
 
 ### Form input validation
 Validate the input data when the user fills out the form.
+
+
+| Field |	Validation Rule |	Required JS Function/Logic |
+|-------|------------------|------------------------------|
+|First Name|	Must only contain letters and spaces.|	A function using a Regular Expression (RegEx) like /^[A-Za-z\s]+$/ to test the input string.|
+|Last Name	| Must only contain letters and spaces.	|Same as First Name.|
+|Phone number (optional)	|Only numbers, space, '-', and '+' characters are allowed. Must contain at least 5 numbers.|	A function using RegEx like /^[0-9\s\-\+]+$/ and a separate check that the number of digits is >= 5.|
+|Email	|Must be a valid email address.|	A function using a robust RegEx or the browser's built-in type="email" validation combined with a final pattern attribute check.|
+|Message|	Must be at least 10 characters long.|	A simple length check (input.value.length >= 10).|
+|Form Submission	|Send POST request to the Contract end-point. Show "Thank you" on HTTP 200.|	A function handling the submit event that performs all validation checks, and if successful, executes the fetch API call.|
+
+#### Name Validation:
+```js
+/**
+ * Validates if a name string contains only letters and spaces.
+ * @param {string} name - The input string from the form field.
+ * @returns {boolean} True if validation passes, false otherwise.
+ */
+function isValidName(name) {
+    // RegEx: Starts (^) and ends ($) with one or more (+) letters (a-z, A-Z) or spaces (\s).
+    const nameRegex = /^[A-Za-z\s]+$/;
+    return nameRegex.test(name.trim());
+}
+```
+
+#### Phone Number Validation:
+```js
+/**
+ * Validates a phone number string.
+ * @param {string} phone - The input string from the form field (can be empty).
+ * @returns {boolean} True if validation passes (or if optional and empty), false otherwise.
+ */
+function isValidPhone(phone) {
+    const trimmedPhone = phone.trim();
+
+    // 1. If the field is optional and empty, it's valid.
+    if (trimmedPhone === "") {
+        return true;
+    }
+
+    // RegEx: Only numbers, spaces, hyphens, and plus signs are allowed.
+    const charRegex = /^[0-9\s\-+]+$/;
+
+    // Minimum 5 numbers check: Count digits specifically.
+    const digitCount = (trimmedPhone.match(/[0-9]/g) || []).length;
+
+    if (!charRegex.test(trimmedPhone)) {
+        return false;
+    }
+
+    if (digitCount < 5) {
+        return false;
+    }
+
+    return true;
+}
+```
+
+#### Email Validation:
+```js
+/**
+ * Validates if a string is a correctly formatted email address.
+ * @param {string} email - The input string from the form field.
+ * @returns {boolean} True if validation passes, false otherwise.
+ */
+function isValidEmail(email) {
+    // Standard RegEx for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email.trim());
+}
+```
+
+#### Message Validation:
+```js
+/**
+ * Validates if a message string meets the minimum length requirement.
+ * @param {string} message - The input string from the form field.
+ * @returns {boolean} True if validation passes, false otherwise.
+ */
+function isValidMessage(message) {
+    // Check if the message is at least 10 characters long after trimming whitespace.
+    return message.trim().length >= 10;
+}
+```
+
 
 ## CSS
 - For the whole project I use [Tailwind.css](https://tailwindcss.com/) added by the [CDN option](https://tailwindcss.com/docs/installation/play-cdn) and for the contact us form I'll write my own css file. 
@@ -266,7 +341,6 @@ Breakpoints:
 - Desktop 1920*1080
 - Tablet 768*1024
 - Mobile 390*844
-
 
 ## Logging
 - Structured logging
