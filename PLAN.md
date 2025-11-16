@@ -16,10 +16,6 @@ We will use HTTP verb specific handlers.
 - For LOGO{id} -> GET
 - For CONTACT -> GET, POST
 
-## Must have JS functions
-
-`fetch` 
-
 
 # Pages
 
@@ -64,6 +60,21 @@ Example json structure:
     "status": "Available"
   }
 ]
+```
+
+Go struct:
+```go
+type Service struct {
+    ID          int      `json:"id"`
+    Name        string   `json:"name"`
+    Description string   `json:"description"`
+    Category    string   `json:"category"`
+    Price       float64  `json:"price"` // Use float64 for currency
+    Status      string   `json:"status"`
+}
+
+// Top-level structure for the file
+type Services []Service
 ```
 
 
@@ -115,6 +126,33 @@ Example json structure:
 ]
 ```
 
+Go struct Persisted Data Structure:
+```go
+type ContactRequest struct {
+    ID          int    `json:"id"`
+    Timestamp   string `json:"timestamp"`
+    FirstName   string `json:"first_name"`
+    LastName    string `json:"last_name"`
+    PhoneNumber *string `json:"phone_number"` // Pointer allows it to be null/omitted
+    Email       string `json:"email"`
+    Message     string `json:"message"`
+    Status      string `json:"status"`
+}
+
+// Top-level structure for the file
+type ContactRequests []ContactRequest
+```
+Go struct Form Data Structure:
+```go
+type ContactFormRequest struct {
+    FirstName string `json:"first_name" form:"first_name"`
+    LastName  string `json:"last_name" form:"last_name"`
+    Phone     string `json:"phone_number" form:"phone_number"` // May need to handle optionality
+    Email     string `json:"email" form:"email"`
+    Message   string `json:"message" form:"message"`
+}
+```
+
 
 ## Logo cloud
 Location: it's part of the root url `/` and have the in page anchor of #logo-cloud.
@@ -150,6 +188,24 @@ Example json structure:
 ```
 I need to parse the json file and map the content to a struct.
 
+Go struct:
+```go
+type Logo struct {
+    ID              int    `json:"id"`
+    Name            string `json:"name"`
+    Category        string `json:"category"`
+    LogoURL         string `json:"logo_url"`
+    TestimonialText string `json:"testimonial_text"`
+    ShowcaseURL     string `json:"shocase_url"` // Note: Check spelling, it's 'shocase_url' in your example
+    ShowcaseImage   string `json:"shocase_image"`
+    Date            string `json:"date"`
+    Status          string `json:"status"`
+}
+
+// Top-level structure for the file
+type Logos []Logo
+```
+
 ## Logo page
 Location: it has it's dedicated url `/logo-{id}`.
 
@@ -162,7 +218,6 @@ Location: it has it's dedicated url `/logo-{id}`.
 
 
 # Partials
-
 These are reuseable components. Thet can be added to every page.
 
 ## Navbar
@@ -173,14 +228,24 @@ Footer is always on the buttom of the page, and present on each page.
 
 # Tech stack
 
-## BE
+## Back-end
 - Golang for back-end with a built in webserver with [sdt - func ListenAndServe](https://pkg.go.dev/net/http@go1.25.4#example-ListenAndServe)
 - Routing: [std - func HandleFunc](https://pkg.go.dev/net/http@go1.25.4#example-HandleFunc)
-- Templating: [std - template](https://pkg.go.dev/html/template@go1.25.4)
+- Templating: [std - template](https://pkg.go.dev/html/template@go1.25.4) 
 - File server for galery and other static files: [std - func FileServer](https://pkg.go.dev/net/http@go1.25.4#example-FileServer)
+- Database: this solution is not using any database, only the specified JSON files and the static files.
 
 ## JS
-- [AlpineJS](https://alpinejs.dev/) with CDN import or creating my own JS.
+- Using just JavaScript code without any framework.
+
+### fetch
+Use `fetch` to submit the [contact us form](#contact-us-form).
+
+### Carousel
+Use carousel to display the logos.
+
+### Form input validation
+Validate the input data when the user fills out the form.
 
 ## CSS
 - For the whole project I use [Tailwind.css](https://tailwindcss.com/) added by the [CDN option](https://tailwindcss.com/docs/installation/play-cdn) and for the contact us form I'll write my own css file. 
@@ -190,3 +255,32 @@ Footer is always on the buttom of the page, and present on each page.
 - #9FB2B2 -- Light
 - #5AACA5 -- Primary
 - #EE9198 -- Secondary
+
+# NFR - Non-functional requirements
+
+## Mobile ready
+The application must be responsive.    
+Source: [statcounter / europe](https://gs.statcounter.com/screen-resolution-stats/all/europe)    
+
+Breakpoints:
+- Desktop 1920*1080
+- Tablet 768*1024
+- Mobile 390*844
+
+
+## Logging
+- Structured logging
+    - Request logging
+    - Error logging
+
+## Error handling
+- Centralized error handling 
+
+## Security
+At this point I'm not gonna do any of the following.
+- Self-sigend TLS
+- Connection timeout
+- Rate limiters
+
+## Testing
+- Unit tests only
