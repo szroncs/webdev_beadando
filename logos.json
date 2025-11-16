@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "name": "Innovatech Solutions",
+        "category": "Technology",
+        "logo_url": "static/images/logos/innovatech_logo.png",
+        "testimonial_text": "Working with Innovatech was a transformative experience; their commitment to quality and deadlines is unmatched in the industry.",
+        "shocase_url": "https://innovatechsolutions.com",
+        "shocase_image": "static/images/logos/innovatech_website.jpg",
+        "date": "2024-03-15",
+        "status": "Active"
+    },
+    {
+        "id": 2,
+        "name": "GreenLeaf Farms",
+        "category": "Agriculture",
+        "logo_url": "static/images/logos/greenleaf_logo.jpg",
+        "testimonial_text": "The team at GreenLeaf Farms provided us with sustainable sourcing options that significantly improved our environmental footprint.",
+        "shocase_url": "https://greenleaffarms.com",
+        "shocase_image": "static/images/logos/greenleaf_website.jpg",
+        "date": "2023-11-20",
+        "status": "Archived"
+    },
+    {
+        "id": 3,
+        "name": "Stellar Marketing Group",
+        "category": "Advertising",
+        "logo_url": "static/images/logos/stellar_logo.jpg",
+        "testimonial_text": "Stellar Marketing dramatically increased our brand visibility and customer engagement over a 6-month campaign.",
+        "shocase_url": "https://stellarmarketinggroup.com",
+        "shocase_image": "static/images/logos/stellar_website.jpg",
+        "date": "2024-05-01",
+        "status": "Active"
+    }
+]

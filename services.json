@@ -1,0 +1,42 @@
+[
+  {
+    "id": 101,
+    "name": "Full Stack Web Development",
+    "description": "Complete end-to-end development of dynamic web applications using modern frameworks (e.g., React, Node.js, Python/Django). Includes database design and deployment.",
+    "category": "Software Development",
+    "price": 8500.00,
+    "status": "Available"
+  },
+  {
+    "id": 102,
+    "name": "Cloud Infrastructure Setup",
+    "description": "Design and deployment of scalable cloud environments (AWS, Azure, or GCP). Focus on security, cost-optimization, and high availability (HA).",
+    "category": "DevOps & IT",
+    "price": 4200.00,
+    "status": "Available"
+  },
+  {
+    "id": 103,
+    "name": "SEO Optimization & Strategy",
+    "description": "Comprehensive search engine optimization audit, keyword research, content strategy, and on-page/off-page implementation to boost organic traffic.",
+    "category": "Digital Marketing",
+    "price": 950.00,
+    "status": "On Hold"
+  },
+  {
+    "id": 104,
+    "name": "Mobile App UI/UX Design",
+    "description": "Wireframing, prototyping, and final design assets for native iOS and Android mobile applications, ensuring a user-centric experience.",
+    "category": "Design",
+    "price": 3100.00,
+    "status": "Available"
+  },
+  {
+    "id": 105,
+    "name": "Data Analytics Reporting",
+    "description": "Creation of custom interactive dashboards (e.g., Power BI, Tableau) for key business metrics and monthly performance analysis.",
+    "category": "Data Services",
+    "price": 1200.00,
+    "status": "Limited Availability"
+  }
+]
