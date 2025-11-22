@@ -1,0 +1,84 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{block "title" .}}WebDev Solutions{{end}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0A0506',
+                        light: '#9FB2B2',
+                        primary: '#5AACA5',
+                        secondary: '#EE9198',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="bg-dark text-light font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-primary">WebDev<span class="text-secondary">.</span></a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="/#hero"
+                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="/#services"
+                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="/#logo-cloud"
+                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Partners</a>
+                        <a href="/#about-us"
+                            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">About
+                            Us</a>
+                        <a href="/contact"
+                            class="bg-primary text-dark hover:bg-secondary px-4 py-2 rounded-full text-sm font-bold transition-colors">Contact
+                            Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-16">
+        {{block "content" .}}{{end}}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="text-sm text-gray-400">
+                    &copy; 2025 WebDev Solutions. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">Privacy</a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
+{{end}}

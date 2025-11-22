@@ -1,0 +1,16 @@
+/* Custom styles for contact form as requested */
+/* Most styles are handled by Tailwind, but adding specific overrides here */
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    box-shadow: 0 0 0 2px rgba(90, 172, 165, 0.5);
+}
+
+/* Scrollbar hiding utility */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
