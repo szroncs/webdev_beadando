@@ -1,6 +1,27 @@
 # Planning out the web application
 
 
+## Project Structure
+Standard Go project layout:
+```
+.
+├── cmd/
+│   └── server/
+│       └── main.go         # Application entry point
+├── internal/
+│   ├── handlers/           # HTTP handlers
+│   ├── models/             # Data structures
+│   └── store/              # Data persistence (JSON operations)
+├── static/
+│   ├── css/
+│   ├── images/
+│   └── js/
+├── templates/              # HTML templates
+├── data/                   # JSON data files (services.json, etc.)
+├── PLAN.md
+└── go.mod
+```
+
 ## HOME
 
 
@@ -194,6 +215,17 @@ type ContactFormRequest struct {
 }
 ```
 
+#### Backend Validation
+The Go backend must validate all inputs independently of the frontend to ensure data integrity.
+- **Sanitization**: Trim whitespace from all string inputs.
+- **Validation Rules**: Re-implement the regex and length checks defined in the frontend section.
+- **Error Handling**: Return 400 Bad Request with specific error messages if validation fails.
+
+#### Concurrency Safety
+Since `contact_request.json` is a shared resource accessed by concurrent web requests:
+- Use a `sync.Mutex` (or `sync.RWMutex`) to lock the file/data structure during read and write operations.
+- This prevents race conditions and data corruption when multiple users submit forms simultaneously.
+
 # Partials
 These are reuseable components. Thet can be added to every page.
 
@@ -211,6 +243,8 @@ Footer is always on the buttom of the page, and present on each page.
 - Templating: [std - template](https://pkg.go.dev/html/template@go1.25.4) 
 - File server for galery and other static files: [std - func FileServer](https://pkg.go.dev/net/http@go1.25.4#example-FileServer)
 - Database: this solution is not using any database, only the specified JSON files and the static files.
+- **Configuration**: Use environment variables or a simple config struct for settings like Port (default :8080) and file paths.
+- **Graceful Shutdown**: Implement signal handling (SIGINT, SIGTERM) to gracefully shut down the server, ensuring all active requests complete and files are closed properly.
 
 ## Routing
 We need a home route `/`. Everything not handled by the other routes, should fall back to the home route. 
@@ -351,7 +385,7 @@ Breakpoints:
 - Centralized error handling 
 
 ## Security
-At this point I'm not gonna do any of the following.
+At this point I'm NOT gonna do any of the following.
 - Self-sigend TLS
 - Connection timeout
 - Rate limiters
