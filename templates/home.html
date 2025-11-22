@@ -2,8 +2,9 @@
 
 {{define "content"}}
 <!-- Hero Section -->
-<section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-dark via-dark to-primary/20 z-0"></div>
+<section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
+    style="background-image: url('/static/images/background/hero.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-primary/20 z-0"></div>
     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1
             class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
@@ -31,14 +32,24 @@
         <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center"><span class="text-primary">Our</span> Services</h2>
 
         <!-- Carousel Container -->
-        <div class="relative">
+        <div class="relative group">
+            <!-- Previous Button -->
+            <!-- Previous Button -->
+            <button id="carousel-prev"
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-dark/80 text-primary p-3 rounded-full border border-white/10 hover:bg-primary hover:text-dark transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                aria-label="Previous slide">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+
             <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" id="services-carousel">
                 {{range .Services}}
                 <div
-                    class="snap-center shrink-0 w-full md:w-[400px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-colors group">
+                    class="snap-center shrink-0 w-full md:w-[400px] bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-colors group/card service-card">
                     <div
-                        class="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
-                        <span class="text-primary group-hover:text-dark font-bold text-xl">#{{.ID}}</span>
+                        class="h-12 w-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover/card:bg-primary transition-colors">
+                        <span class="text-primary group-hover/card:text-dark font-bold text-xl">#{{.ID}}</span>
                     </div>
                     <h3 class="text-2xl font-bold mb-4 text-white">{{.Name}}</h3>
                     <p class="text-gray-400 mb-6 leading-relaxed">{{.Description}}</p>
@@ -49,6 +60,20 @@
                 </div>
                 {{end}}
             </div>
+
+            <!-- Next Button -->
+            <button id="carousel-next"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-dark/80 text-primary p-3 rounded-full border border-white/10 hover:bg-primary hover:text-dark transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                aria-label="Next slide">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Indicators -->
+        <div class="flex justify-center gap-2 mt-4" id="carousel-indicators">
+            <!-- Indicators injected by JS -->
         </div>
     </div>
 </section>
@@ -63,11 +88,13 @@
             <div class="flex gap-12 items-center justify-center flex-wrap">
                 {{range .Logos}}
                 <a href="/logo-{{.ID}}"
-                    class="group relative grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 transform hover:scale-110">
-                    <!-- Placeholder for logo image if URL is local/broken, but using text for now if image fails -->
+                    class="group relative w-64 h-32 rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-all duration-500 border border-white/10 hover:border-primary/50">
+                    <div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500"
+                        style="background-image: url('/{{.LogoURL}}');">
+                    </div>
                     <div
-                        class="h-20 w-48 bg-white/5 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-secondary/50">
-                        <span class="font-bold text-lg">{{.Name}}</span>
+                        class="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
+                        <span class="text-white font-bold text-lg tracking-wide text-center px-2">{{.Name}}</span>
                     </div>
                 </a>
                 {{end}}
@@ -102,9 +129,9 @@
                 <div
                     class="aspect-square rounded-2xl bg-gradient-to-tr from-primary to-secondary opacity-20 absolute inset-0 blur-2xl">
                 </div>
-                <div
-                    class="aspect-square rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex items-center justify-center relative">
-                    <span class="text-6xl">🚀</span>
+                <div class="aspect-square rounded-2xl overflow-hidden border border-white/10 backdrop-blur-sm relative">
+                    <img src="/static/images/background/about-us.jpg" alt="About WebDev Team"
+                        class="w-full h-full object-cover">
                 </div>
             </div>
         </div>

@@ -158,7 +158,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, data interface{}) {
 
 // Validation helpers
 func isValidName(name string) bool {
-	matched, _ := regexp.MatchString(`^[A-Za-z\s]+$`, name)
+	matched, _ := regexp.MatchString(`^[\p{L}\s]+$`, name)
 	return matched
 }
 

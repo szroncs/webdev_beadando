@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validation functions
     function isValidName(name) {
-        const nameRegex = /^[A-Za-z\s]+$/;
+        const nameRegex = /^[\p{L}\s]+$/u;
         return nameRegex.test(name.trim());
     }
 
@@ -106,4 +106,101 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Network error. Please try again.');
         }
     });
+
+    // Carousel Logic
+    function initCarousel() {
+        const carousel = document.getElementById('services-carousel');
+        if (!carousel) return;
+
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const cards = carousel.querySelectorAll('.service-card');
+
+        if (cards.length === 0) return;
+
+        let autoScrollInterval;
+
+        const getScrollAmount = () => {
+            return cards[0].offsetWidth + 24; // Width + gap (gap-6 is 1.5rem = 24px)
+        };
+
+        // Create indicators
+        cards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `w-3 h-3 rounded-full transition-all ${index === 0 ? 'bg-primary w-8' : 'bg-white/20 hover:bg-white/40'}`;
+            dot.ariaLabel = `Go to slide ${index + 1}`;
+            dot.addEventListener('click', () => {
+                carousel.scrollTo({
+                    left: index * getScrollAmount(),
+                    behavior: 'smooth'
+                });
+                resetAutoScroll();
+            });
+            indicatorsContainer.appendChild(dot);
+        });
+
+        const updateIndicators = () => {
+            const scrollPos = carousel.scrollLeft;
+            const index = Math.round(scrollPos / getScrollAmount());
+
+            Array.from(indicatorsContainer.children).forEach((dot, i) => {
+                if (i === index) {
+                    dot.className = 'w-3 h-3 rounded-full transition-all bg-primary w-8';
+                } else {
+                    dot.className = 'w-3 h-3 rounded-full transition-all bg-white/20 hover:bg-white/40';
+                }
+            });
+        };
+
+        carousel.addEventListener('scroll', () => {
+            // Debounce indicator update for performance if needed, but direct is fine for small items
+            updateIndicators();
+        });
+
+        // Navigation buttons
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                resetAutoScroll();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                resetAutoScroll();
+            });
+        }
+
+        // Auto-scroll
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                if (carousel.scrollLeft >= maxScroll - 10) { // Tolerance
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                }
+            }, 3000); // 3 seconds
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+
+        function resetAutoScroll() {
+            stopAutoScroll();
+            startAutoScroll();
+        }
+
+        // Pause on hover
+        carousel.parentElement.addEventListener('mouseenter', stopAutoScroll);
+        carousel.parentElement.addEventListener('mouseleave', startAutoScroll);
+
+        // Start initial auto-scroll
+        startAutoScroll();
+    }
+
+    initCarousel();
 });
