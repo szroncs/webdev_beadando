@@ -10,12 +10,8 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the project root and specific directories
-app.use(express.static(path.join(__dirname)));
-app.use('/static', express.static(path.join(__dirname, 'static')));
-// Serve data folder statically just in case some other JS relies on it temporarily
-app.use('/data', express.static(path.join(__dirname, 'data')));
-
+// Serve static files from the public directory only
+app.use(express.static(path.join(__dirname, 'public')));
 
 // API Endpoints
 
@@ -103,7 +99,7 @@ app.post('/api/contact', async (req, res) => {
 
 // Admin Page Route
 app.get('/secureadminpage', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'admin.html'));
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // Admin API to fetch submissions
