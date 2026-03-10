@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (servicesGrid || servicesTableBody) {
         try {
-            const response = await fetch('/data/services.json');
+            const response = await fetch('/api/services');
             if (!response.ok) throw new Error('Failed to load services');
             const services = await response.json();
 
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const logoCloudGrid = document.getElementById('logo-cloud-grid');
     if (logoCloudGrid) {
         try {
-            const response = await fetch('/data/logos.json');
+            const response = await fetch('/api/logos');
             if (!response.ok) throw new Error('Failed to load partners');
             const logos = await response.json();
 
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-            const response = await fetch('/data/logos.json');
+            const response = await fetch('/api/logos');
             if (!response.ok) throw new Error('Failed to load data');
             const logos = await response.json();
             const logo = logos.find(l => l.id === logoId);
