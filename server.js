@@ -63,6 +63,17 @@ app.get('/api/services', async (req, res) => {
     }
 });
 
+// Get planner components
+app.get('/api/planner-components', async (req, res) => {
+    try {
+        const components = await loadData('planner_components.json');
+        res.json(components);
+    } catch (err) {
+        console.error('Error fetching planner components:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
