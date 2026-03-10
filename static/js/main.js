@@ -1,4 +1,22 @@
+async function loadNavbar() {
+    const container = document.getElementById('navbar-container');
+    if (container) {
+        try {
+            const response = await fetch('/static/partials/navbar.html');
+            if (response.ok) {
+                const html = await response.text();
+                container.innerHTML = html;
+            } else {
+                console.error('Failed to load navbar partial:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error fetching navbar partial:', error);
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
+    await loadNavbar();
     // --- Contact Form Handling ---
     const form = document.getElementById('contact-form');
     if (form) {
@@ -103,19 +121,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (!isFormValid) return;
 
-            // Mock Submit form
-            // Simulate network delay
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = 'Sending...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                form.classList.add('hidden');
-                successMessage.classList.remove('hidden');
+            const formData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                email: document.getElementById('email').value,
+                phone_number: document.getElementById('phone_number').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                } else {
+                    const errorEl = document.getElementById('error-message');
+                    errorEl.innerText = "Error sending message. Please try again later.";
+                    errorEl.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error("Submission failed", err);
+                const errorEl = document.getElementById('error-message');
+                errorEl.innerText = "Network error. Please try again later.";
+                errorEl.classList.remove('hidden');
+            } finally {
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
-            }, 1000);
+            }
         });
     }
 
