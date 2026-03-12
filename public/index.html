@@ -1,254 +1,403 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - WebDev Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#0A0506',
-                        light: '#9FB2B2',
-                        primary: '#5AACA5',
-                        secondary: '#EE9198',
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home - WebDev Solutions</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            dark: "#0A0506",
+                            light: "#9FB2B2",
+                            primary: "#5AACA5",
+                            secondary: "#EE9198",
+                        },
+                        fontFamily: {
+                            sans: ["Inter", "sans-serif"],
+                        },
                     },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+                },
+            };
+        </script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
 
-<body class="bg-dark text-light font-sans antialiased flex flex-col min-h-screen">
+    <body
+        class="bg-dark text-light font-sans antialiased flex flex-col min-h-screen"
+    >
+        <!-- Navbar -->
+        <div id="navbar-container"></div>
 
-    <!-- Navbar -->
-    <div id="navbar-container"></div>
-
-    <!-- Main Content -->
-    <main class="flex-grow pt-16">
-
-        <!-- Hero Section -->
-        <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
-            style="background-image: url('/images/background/hero.jpg');">
-            <div class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-primary/20 z-0"></div>
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <h1
-                    class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                    Crafting Digital Excellence
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-10 font-light">
-                    We build premium web experiences that captivate and convert.
-                </p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="#services"
-                        class="px-8 py-4 bg-primary text-dark font-bold rounded-full hover:bg-secondary transition-all transform hover:scale-105 shadow-lg shadow-primary/25">
-                        Explore Services
-                    </a>
-                    <a href="#about-us"
-                        class="px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white font-bold rounded-full hover:bg-white/10 transition-all">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-24 bg-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center"><span class="text-primary">Our</span>
-                    Services</h2>
-
-                <!-- Services Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
-                    <!-- Populated by JS -->
-                </div>
-
-                <!-- Services Table Section -->
-                <div class="mt-16">
-                    <button id="toggle-services-table"
-                        class="flex items-center justify-center w-full md:w-auto mx-auto px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold rounded-full transition-all group">
-                        <span>View Services Table</span>
-                        <svg class="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <div id="services-table-container"
-                        class="hidden mt-8 overflow-x-auto rounded-2xl border border-white/10">
-                        <table class="w-full text-left text-sm text-gray-400">
-                            <thead class="bg-white/5 text-xs uppercase text-gray-200">
-                                <tr>
-                                    <th scope="col" class="px-6 py-4 font-bold">ID</th>
-                                    <th scope="col" class="px-6 py-4 font-bold">Name</th>
-                                    <th scope="col" class="px-6 py-4 font-bold">Category</th>
-                                    <th scope="col" class="px-6 py-4 font-bold">Price</th>
-                                    <th scope="col" class="px-6 py-4 font-bold">Status</th>
-                                    <th scope="col" class="px-6 py-4 font-bold">Description</th>
-                                </tr>
-                            </thead>
-                            <tbody id="services-table-body"
-                                class="divide-y divide-white/10 bg-dark/50 backdrop-blur-sm">
-                                <!-- Populated by JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Logo Cloud Section -->
-        <section id="logo-cloud" class="py-24 bg-black/30">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">Trusted <span
-                        class="text-secondary">Partners</span></h2>
-
-                <div class="relative overflow-hidden">
-                    <div class="flex gap-12 items-center justify-center flex-wrap" id="logo-cloud-grid">
-                        <!-- Populated by JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Planner Section -->
-        <section id="planner" class="py-24 bg-dark border-t border-white/5">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Project <span class="text-primary">Planner</span></h2>
-                    <p class="text-gray-400 text-sm max-w-2xl mx-auto">
-                        Build your own requirements and get an estimated price.
-                        <br /><span class="text-secondary/80 italic text-xs">Disclaimer: This is an estimated price. The final price may vary depending on the complexity of the project.</span>
+        <!-- Main Content -->
+        <main class="flex-grow pt-16">
+            <!-- Hero Section -->
+            <section
+                id="hero"
+                class="relative h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
+                style="
+                    background-image: url(&quot;/images/background/hero.jpg&quot;);
+                "
+            >
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-primary/20 z-0"
+                ></div>
+                <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                    <h1
+                        class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+                    >
+                        Crafting Digital Excellence
+                    </h1>
+                    <p
+                        class="text-xl md:text-2xl text-gray-300 mb-10 font-light"
+                    >
+                        We build premium web experiences that captivate and
+                        convert.
                     </p>
-                </div>
-
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
-                    <!-- Background aesthetic -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-
-                    <!-- Table Header (hidden on mobile) -->
-                    <div class="hidden md:grid grid-cols-12 gap-4 mb-4 pb-4 border-b border-white/10 text-sm font-bold text-gray-400 uppercase tracking-wider">
-                        <div class="col-span-4">Component</div>
-                        <div class="col-span-2 text-right">Price</div>
-                        <div class="col-span-5">Notes</div>
-                        <div class="col-span-1 text-center">Action</div>
-                    </div>
-
-                    <!-- Rows Container -->
-                    <div id="planner-rows-container" class="space-y-4 mb-8">
-                        <!-- Rows injected by JS. Default row will be placed here. -->
-                    </div>
-
-                    <div class="flex justify-center mb-12">
-                        <button id="planner-add-row" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-medium transition-all group flex items-center gap-2">
-                            <svg class="w-5 h-5 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                            </svg>
-                            Add Component
-                        </button>
-                    </div>
-
-                    <!-- Footer Info -->
-                    <div class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div class="flex items-center gap-8 bg-dark/50 px-6 py-4 rounded-2xl border border-white/5 w-full md:w-auto">
-                            <div>
-                                <p class="text-gray-400 text-sm uppercase tracking-wider font-semibold mb-1">Complexity</p>
-                                <div class="flex items-center gap-2">
-                                    <span id="planner-complexity" class="text-3xl font-bold text-white">1</span>
-                                    <span class="text-gray-500">/ 10</span>
-                                </div>
-                            </div>
-                            <div class="h-10 w-px bg-white/10"></div>
-                            <div>
-                                <p class="text-gray-400 text-sm uppercase tracking-wider font-semibold mb-1">Estimated Total</p>
-                                <div class="flex items-center gap-1 text-primary">
-                                    <span id="planner-total" class="text-4xl font-bold">100</span>
-                                    <span class="text-xl font-semibold mt-1 self-start">EUR</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button id="planner-submit" class="w-full md:w-auto px-8 py-4 bg-primary hover:bg-secondary text-dark font-bold rounded-xl transition-all transform hover:scale-105 shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
-                            Submit Request
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about-us" class="py-24 bg-dark relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-3xl rounded-full pointer-events-none">
-            </div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">About <span class="text-primary">WebDev</span>
-                        </h2>
-                        <p class="text-gray-300 text-lg leading-relaxed mb-8">
-                            We are a team of passionate developers and designers dedicated to pushing the boundaries of
-                            what's
-                            possible on the web.
-                            From complex cloud infrastructures to stunning frontend interfaces, we deliver excellence in
-                            every
-                            line of code.
-                        </p>
-                        <a href="/contact.html"
-                            class="inline-flex items-center px-8 py-4 bg-secondary text-dark font-bold rounded-full hover:bg-white transition-colors">
-                            Get in Touch
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <a
+                            href="#services"
+                            class="px-8 py-4 bg-primary text-dark font-bold rounded-full hover:bg-secondary transition-all transform hover:scale-105 shadow-lg shadow-primary/25"
+                        >
+                            Explore Services
+                        </a>
+                        <a
+                            href="#about-us"
+                            class="px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white font-bold rounded-full hover:bg-white/10 transition-all"
+                        >
+                            Contact Us
                         </a>
                     </div>
-                    <div class="relative">
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="py-24 bg-dark">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold mb-16 text-center"
+                    >
+                        <span class="text-primary">Our</span> Services
+                    </h2>
+
+                    <!-- Services Grid -->
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        id="services-grid"
+                    >
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Services Table Section -->
+                    <div class="mt-16">
+                        <button
+                            id="toggle-services-table"
+                            class="flex items-center justify-center w-full md:w-auto mx-auto px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold rounded-full transition-all group"
+                        >
+                            <span>View Services Table</span>
+                            <svg
+                                class="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7"
+                                ></path>
+                            </svg>
+                        </button>
+
                         <div
-                            class="aspect-square rounded-2xl bg-gradient-to-tr from-primary to-secondary opacity-20 absolute inset-0 blur-2xl">
-                        </div>
-                        <div
-                            class="aspect-square rounded-2xl overflow-hidden border border-white/10 backdrop-blur-sm relative">
-                            <img src="/images/background/about-us.jpg" alt="About WebDev Team"
-                                class="w-full h-full object-cover">
+                            id="services-table-container"
+                            class="hidden mt-8 overflow-x-auto rounded-2xl border border-white/10"
+                        >
+                            <table
+                                class="w-full text-left text-sm text-gray-400"
+                            >
+                                <thead
+                                    class="bg-white/5 text-xs uppercase text-gray-200"
+                                >
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            ID
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            Name
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            Category
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            Price
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            Status
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-6 py-4 font-bold"
+                                        >
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody
+                                    id="services-table-body"
+                                    class="divide-y divide-white/10 bg-dark/50 backdrop-blur-sm"
+                                >
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+            <!-- Logo Cloud Section -->
+            <section id="logo-cloud" class="py-24 bg-black/30">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold mb-16 text-center"
+                    >
+                        Trusted <span class="text-secondary">Partners</span>
+                    </h2>
 
-    <!-- Footer -->
-    <footer class="bg-black/50 border-t border-white/10 mt-20">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <div class="text-sm text-gray-400">
-                    &copy; 2025 WebDev Solutions. All rights reserved.
+                    <div class="relative overflow-hidden">
+                        <div
+                            class="flex gap-12 items-center justify-center flex-wrap"
+                            id="logo-cloud-grid"
+                        >
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
                 </div>
-                <div class="flex space-x-6">
-                    <a href="https://vpnoverview.com/research/most-difficult-to-read-privacy-policies/"
-                        class="text-gray-400 hover:text-primary transition-colors">Privacy</a>
-                    <a href="http://www.wtfpl.net/" class="text-gray-400 hover:text-primary transition-colors">Terms</a>
+            </section>
+
+            <!-- Planner Section -->
+            <section id="planner" class="py-24 bg-dark border-t border-white/5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                            Project <span class="text-primary">Planner</span>
+                        </h2>
+                        <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                            Build your own requirements and get an estimated
+                            price.
+                            <br /><span class="text-secondary/80 italic text-xs"
+                                >Disclaimer: This is an estimated price. The
+                                final price may vary depending on the complexity
+                                of the project.</span
+                            >
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden"
+                    >
+                        <!-- Background aesthetic -->
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"
+                        ></div>
+
+                        <!-- Table Header (hidden on mobile) -->
+                        <div
+                            class="hidden md:grid grid-cols-12 gap-4 mb-4 pb-4 border-b border-white/10 text-sm font-bold text-gray-400 uppercase tracking-wider"
+                        >
+                            <div class="col-span-4">Component</div>
+                            <div class="col-span-2 text-right">Price</div>
+                            <div class="col-span-5">Notes</div>
+                            <div class="col-span-1 text-center">Action</div>
+                        </div>
+
+                        <!-- Rows Container -->
+                        <div id="planner-rows-container" class="space-y-4 mb-8">
+                            <!-- Rows injected by JS. Default row will be placed here. -->
+                        </div>
+
+                        <div class="flex justify-center mb-12">
+                            <button
+                                id="planner-add-row"
+                                class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-white font-medium transition-all group flex items-center gap-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-primary group-hover:scale-110 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 4v16m8-8H4"
+                                    ></path>
+                                </svg>
+                                Add Component
+                            </button>
+                        </div>
+
+                        <!-- Footer Info -->
+                        <div
+                            class="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-6"
+                        >
+                            <div
+                                class="flex items-center gap-8 bg-dark/50 px-6 py-4 rounded-2xl border border-white/5 w-full md:w-auto"
+                            >
+                                <div>
+                                    <p
+                                        class="text-gray-400 text-sm uppercase tracking-wider font-semibold mb-1"
+                                    >
+                                        Complexity
+                                    </p>
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            id="planner-complexity"
+                                            class="text-3xl font-bold text-white"
+                                            >1</span
+                                        >
+                                        <span class="text-gray-500">/ 10</span>
+                                    </div>
+                                </div>
+                                <div class="h-10 w-px bg-white/10"></div>
+                                <div>
+                                    <p
+                                        class="text-gray-400 text-sm uppercase tracking-wider font-semibold mb-1"
+                                    >
+                                        Estimated Total
+                                    </p>
+                                    <div
+                                        class="flex items-center gap-1 text-primary"
+                                    >
+                                        <span
+                                            id="planner-total"
+                                            class="text-4xl font-bold"
+                                            >100</span
+                                        >
+                                        <span
+                                            class="text-xl font-semibold mt-1 self-start"
+                                            >EUR</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button
+                                id="planner-submit"
+                                class="w-full md:w-auto px-8 py-4 bg-primary hover:bg-secondary text-dark font-bold rounded-xl transition-all transform hover:scale-105 shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                            >
+                                Submit Request
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </footer>
+            </section>
 
-    <script src="/js/main.js"></script>
-    <script src="/js/home.js"></script>
-    <script src="/js/planner.js"></script>
-</body>
+            <!-- About Us Section -->
+            <section
+                id="about-us"
+                class="py-24 bg-dark relative overflow-hidden"
+            >
+                <div
+                    class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-3xl rounded-full pointer-events-none"
+                ></div>
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+                >
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                                About <span class="text-primary">WebDev</span>
+                            </h2>
+                            <p
+                                class="text-gray-300 text-lg leading-relaxed mb-8"
+                            >
+                                We are a team of passionate developers and
+                                designers dedicated to pushing the boundaries of
+                                what's possible on the web. From complex cloud
+                                infrastructures to stunning frontend interfaces,
+                                we deliver excellence in every line of code.
+                            </p>
+                            <a
+                                href="/contact.html"
+                                class="inline-flex items-center px-8 py-4 bg-secondary text-dark font-bold rounded-full hover:bg-white transition-colors"
+                            >
+                                Get in Touch
+                                <svg
+                                    class="w-5 h-5 ml-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="aspect-square rounded-2xl bg-gradient-to-tr from-primary to-secondary opacity-20 absolute inset-0 blur-2xl"
+                            ></div>
+                            <div
+                                class="aspect-square rounded-2xl overflow-hidden border border-white/10 backdrop-blur-sm relative"
+                            >
+                                <img
+                                    src="/images/background/about-us.jpg"
+                                    alt="About WebDev Team"
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
 
+        <!-- Footer -->
+        <div id="footer-container"></div>
+
+        <script src="/js/main.js"></script>
+        <script src="/js/home.js"></script>
+        <script src="/js/planner.js"></script>
+    </body>
 </html>
