@@ -1,41 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study - WebDev Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: '#0A0506',
-                        light: '#9FB2B2',
-                        primary: '#5AACA5',
-                        secondary: '#EE9198',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body class="bg-dark text-light font-sans antialiased flex flex-col min-h-screen">
-
-    <!-- Navbar -->
-    <div id="navbar-container"></div>
-
-    <!-- Main Content -->
-    <main class="flex-grow pt-16">
-
-        <div class="pt-20 pb-24" id="logo-detail-container">
+<div class="pt-20 pb-24" id="logo-detail-container">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Header -->
                 <div class="text-center mb-16">
@@ -98,27 +61,4 @@
                 </div>
             </div>
         </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black/50 border-t border-white/10 mt-20">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <div class="text-sm text-gray-400">
-                    &copy; 2025 WebDev Solutions. All rights reserved.
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://vpnoverview.com/research/most-difficult-to-read-privacy-policies/"
-                        class="text-gray-400 hover:text-primary transition-colors">Privacy</a>
-                    <a href="http://www.wtfpl.net/" class="text-gray-400 hover:text-primary transition-colors">Terms</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="/js/main.js"></script>
-    <script src="/js/logo-detail.js"></script>
-</body>
-
-</html>
+<script src="/js/logo-detail.js"></script>

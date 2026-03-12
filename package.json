@@ -19,6 +19,8 @@
   "homepage": "https://github.com/szroncs/webdev_beadando#readme",
   "dependencies": {
     "cors": "^2.8.6",
-    "express": "^5.2.1"
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1"
   }
 }
