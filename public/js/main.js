@@ -33,6 +33,5 @@ async function loadFooter() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Load global components
   await Promise.all([loadNavbar(), loadFooter()]);
 });

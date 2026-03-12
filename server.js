@@ -6,22 +6,22 @@ const apiRoutes = require("./src/routes/apiRoutes");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
+// Middleware - ezt LLM ajánlotta, mivel Go-ban is használok middleware chaining-et ezért egész érthető
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the public directory only
+// Serve static
 app.use(express.static(path.join(__dirname, "public")));
 
 // API Routes
 app.use("/api", apiRoutes);
 
-// Admin Page Route
+// Admin
 app.get("/secureadminpage", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
-// Start the server
+// ez olyan mint a Go ListenAndServe
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

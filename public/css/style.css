@@ -1,12 +1,11 @@
-/* Custom styles for contact form as requested */
-/* Most styles are handled by Tailwind, but adding specific overrides here */
+/* custom css */
 
 #contact-form input:focus,
 #contact-form textarea:focus {
     box-shadow: 0 0 0 2px rgba(90, 172, 165, 0.5);
 }
 
-/* Scrollbar hiding utility */
+/* ezt itt láttam https://www.youtube.com/shorts/ppS_i9IRkyY */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
