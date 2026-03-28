@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const total = totalPriceEl.textContent;
       const complexity = complexityEl.textContent;
 
-      window.location.href = `/contact.html?plan_id=${planId}&price=${total}&complexity=${complexity}`;
+      window.location.href = `/contact?plan_id=${planId}&price=${total}&complexity=${complexity}`;
     });
   }
 });

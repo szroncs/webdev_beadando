@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       logoCloudGrid.innerHTML = logos
         .map(
           (logo) => `
-                <a href="/logo.html?id=${logo.id}"
+                <a href="/logo?id=${logo.id}"
                     class="group relative w-64 h-32 rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-all duration-500 border border-white/10 hover:border-primary/50">
                     <div class="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500"
                         style="background-image: url('/${logo.logo_url}');">

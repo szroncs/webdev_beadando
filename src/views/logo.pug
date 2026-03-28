@@ -1,0 +1,46 @@
+extends layout
+
+block head
+    title Case Study - WebDev Solutions
+
+block content
+    div.pt-4.pb-24#logo-detail-container
+        div.max-w-4xl.mx-auto.px-4(class="sm:px-6 lg:px-8")
+            // Header
+            div.text-center.mb-16
+                span.text-primary.text-sm.font-bold.tracking-wider.uppercase.mb-4.block#logo-category
+                h1.text-4xl.font-bold.mb-6.text-white(class="md:text-6xl")#logo-name
+                div(class="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400")
+                    span#logo-date
+
+            // Showcase Image
+            div(class="relative aspect-video rounded-2xl overflow-hidden mb-16 border border-white/10 shadow-2xl shadow-primary/10 group")
+                div(class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-60")
+                img(src="" alt="" class="w-full h-full object-cover" id="logo-showcase-image")
+
+            // Content
+            div.grid.gap-12(class="md:grid-cols-3")
+                div(class="md:col-span-2")
+                    h2.text-2xl.font-bold.mb-6.text-white Client Testimonial
+                    blockquote.text-xl.text-gray-300.italic.border-l-4.border-secondary.pl-6.mb-8#logo-testimonial
+                    
+                    div.mt-12
+                        a(href="" target="_blank" class="inline-flex items-center text-primary hover:text-white transition-colors font-bold text-lg group" id="logo-live-site") Visit Live Site
+                            svg(class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14")
+                
+                div(class="bg-white/5 rounded-2xl p-8 border border-white/10 h-fit")
+                    h3.text-lg.font-bold.mb-4.text-white Project Details
+                    dl.space-y-4
+                        div
+                            dt.text-sm.text-gray-500 Status
+                            dd.text-white.font-medium#logo-status
+                        div
+                            dt.text-sm.text-gray-500 Category
+                            dd.text-white.font-medium#logo-category-detail
+
+            div.mt-20.text-center
+                a(href="/#logo-cloud" class="text-gray-400 hover:text-white transition-colors") &larr; Back to Home
+
+block scripts
+    script(src="/js/logo-detail.js")
