@@ -18,3 +18,4 @@ A szerkeszthető adattábla követelményének teljesítése érdekében létreh
 ### 4. Adminisztrációs oldal
 Létrehoztam egy semennyire sem biztonságos (sem auth, sem token) adminisztrációs oldalt a `/secureadminpage` címen. Csak azért biztonságos, mert sehonnan nem mutat rá hivatkozás, tehát be kell írni az URL-t.
 
+> Repo linkje: https://github.com/szroncs/webdev_beadando
