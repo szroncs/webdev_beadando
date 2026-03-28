@@ -1,0 +1,32 @@
+extends layout
+
+block head
+    title Admin - Contact Submissions
+
+block content
+    div.max-w-7xl.mx-auto.px-4(class="sm:px-6 lg:px-8 pb-12 pt-8")
+        div.mb-12
+            h1.text-3xl.font-bold.text-white.mb-2 Contact 
+                span.text-primary Submissions
+            p.text-gray-400 View and manage all incoming form submissions.
+        div(class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden shadow-2xl")
+            div.overflow-x-auto
+                table.w-full.text-left.border-collapse
+                    thead
+                        tr(class="bg-white/10 text-gray-300 uppercase text-xs font-bold tracking-wider")
+                            th.px-6.py-4 Date
+                            th.px-6.py-4 Name
+                            th.px-6.py-4 Email
+                            th.px-6.py-4 Phone
+                            th.px-6.py-4 Message
+                    tbody#submissions-table-body(class="divide-y divide-white/5")
+                        tr
+                            td(colspan="5" class="px-6 py-12 text-center text-gray-500")
+                                div(class="flex flex-col items-center")
+                                    svg(class="animate-spin h-8 w-8 mb-4 text-primary" viewBox="0 0 24 24")
+                                        circle(class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none")
+                                        path(class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z")
+                                    | Loading submissions...
+
+block scripts
+    script(src="/js/admin.js")

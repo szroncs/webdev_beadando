@@ -1,0 +1,124 @@
+extends layout
+
+block head
+    title Home - WebDev Solutions
+
+block content
+    // Hero Section
+    section#hero.relative.h-screen.flex.items-center.justify-center.overflow-hidden.bg-cover.bg-center(style="background-image: url('/images/background/hero.jpg');")
+        div(class="absolute inset-0 bg-gradient-to-br from-dark/90 via-dark/80 to-primary/20 z-0")
+        div.relative.z-10.text-center.px-4.max-w-4xl.mx-auto
+            h1.text-5xl.font-bold.mb-6.bg-clip-text.text-transparent.bg-gradient-to-r.from-white.to-gray-400(class="md:text-7xl") Crafting Digital Excellence
+            p.text-xl.text-gray-300.mb-10.font-light(class="md:text-2xl") We build premium web experiences that captivate and convert.
+            div.flex.flex-col.gap-4.justify-center(class="md:flex-row")
+                a(href="#services" class="px-8 py-4 bg-primary text-dark font-bold rounded-full hover:bg-secondary transition-all transform hover:scale-105 shadow-lg shadow-primary/25") Explore Services
+                a(href="/contact" class="px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white font-bold rounded-full hover:bg-white/10 transition-all") Contact Us
+
+    // Services Section
+    section#services.py-24.bg-dark
+        div.max-w-7xl.mx-auto.px-4(class="sm:px-6 lg:px-8")
+            h2.text-3xl.font-bold.mb-16.text-center(class="md:text-4xl") 
+                span.text-primary Our 
+                | Services
+            
+            // Services Grid
+            div#services-grid.grid.grid-cols-1.gap-8(class="md:grid-cols-2 lg:grid-cols-3")
+                // Populated by JS
+
+            // Services Table Section
+            div.mt-16
+                button#toggle-services-table.flex.items-center.justify-center.w-full.mx-auto.px-8.py-4.border.border-white_10.hover_bg-white_10.text-white.font-bold.rounded-full.transition-all.group(class="md:w-auto bg-white/5 border-white/10 hover:bg-white/10")
+                    span View Services Table
+                    svg(class="w-5 h-5 ml-2 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                        path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7")
+                
+                div#services-table-container.hidden.mt-8.overflow-x-auto.rounded-2xl.border(class="border-white/10")
+                    table.w-full.text-left.text-sm.text-gray-400
+                        thead(class="bg-white/5 text-xs uppercase text-gray-200")
+                            tr
+                                th(scope="col" class="px-6 py-4 font-bold") ID
+                                th(scope="col" class="px-6 py-4 font-bold") Name
+                                th(scope="col" class="px-6 py-4 font-bold") Category
+                                th(scope="col" class="px-6 py-4 font-bold") Price
+                                th(scope="col" class="px-6 py-4 font-bold") Status
+                                th(scope="col" class="px-6 py-4 font-bold") Description
+                        tbody#services-table-body(class="divide-y divide-white/10 bg-dark/50 backdrop-blur-sm")
+                            // Populated by JS
+
+    // Logo Cloud Section
+    section#logo-cloud.py-24.bg-black_30(class="bg-black/30")
+        div.max-w-7xl.mx-auto.px-4(class="sm:px-6 lg:px-8")
+            h2.text-3xl.font-bold.mb-16.text-center(class="md:text-4xl") Trusted 
+                span.text-secondary Partners
+            div.relative.overflow-hidden
+                div#logo-cloud-grid.flex.gap-12.items-center.justify-center.flex-wrap
+                    // Populated by JS
+
+    // Planner Section
+    section#planner.py-24.bg-dark.border-t.border-white_5(class="border-white/5")
+        div.max-w-7xl.mx-auto.px-4(class="sm:px-6 lg:px-8")
+            div.text-center.mb-16
+                h2.text-3xl.font-bold.mb-4(class="md:text-4xl") Project 
+                    span.text-primary Planner
+                p.text-gray-400.text-sm.max-w-2xl.mx-auto Build your own requirements and get an estimated price.
+                    br
+                    span.text-secondary_80.italic.text-xs(class="text-secondary/80") Disclaimer: This is an estimated price. The final price may vary depending on the complexity of the project.
+            
+            div.backdrop-blur-md.border.rounded-3xl.p-6.shadow-2xl.relative.overflow-hidden(class="bg-white/5 border-white/10 md:p-10")
+                div.absolute.top-0.right-0.w-64.h-64.rounded-full.blur-3xl.-z-10.pointer-events-none(class="bg-primary/10")
+                
+                div.hidden.grid-cols-12.gap-4.mb-4.pb-4.border-b.text-sm.font-bold.text-gray-400.uppercase.tracking-wider(class="md:grid border-white/10")
+                    div.col-span-4 Component
+                    div.col-span-2.text-right Price
+                    div.col-span-5 Notes
+                    div.col-span-1.text-center Action
+
+                div#planner-rows-container.space-y-4.mb-8
+                    // Rows injected by JS
+                
+                div.flex.justify-center.mb-12
+                    button#planner-add-row.px-6.py-3.border.rounded-xl.text-white.font-medium.transition-all.group.flex.items-center.gap-2(class="bg-white/5 hover:bg-white/10 border-white/10")
+                        svg(class="w-5 h-5 text-primary group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                            path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4")
+                        | Add Component
+
+                div.border-t.pt-8.mt-8.flex.flex-col.justify-between.items-center.gap-6(class="border-white/10 md:flex-row")
+                    div.flex.items-center.gap-8.px-6.py-4.rounded-2xl.border.w-full(class="bg-dark/50 border-white/5 md:w-auto")
+                        div
+                            p.text-gray-400.text-sm.uppercase.tracking-wider.font-semibold.mb-1 Complexity
+                            div.flex.items-center.gap-2
+                                span#planner-complexity.text-3xl.font-bold.text-white 1
+                                span.text-gray-500 / 10
+                        div.h-10.w-px.bg-white_10(class="bg-white/10")
+                        div
+                            p.text-gray-400.text-sm.uppercase.tracking-wider.font-semibold.mb-1 Estimated Total
+                            div.flex.items-center.gap-1.text-primary
+                                span#planner-total.text-4xl.font-bold 100
+                                span.text-xl.font-semibold.mt-1.self-start EUR
+
+                    button#planner-submit.w-full.px-8.py-4.bg-primary.text-dark.font-bold.rounded-xl.transition-all.transform.shadow-lg.flex.items-center.justify-center.gap-2(class="md:w-auto hover:bg-secondary hover:scale-105 shadow-primary/20")
+                        | Submit Request
+                        svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                            path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3")
+
+    // About Us Section
+    section#about-us.py-24.bg-dark.relative.overflow-hidden
+        div.absolute.top-0.right-0.w-1_2.h-full.blur-3xl.rounded-full.pointer-events-none(class="w-1/2 bg-primary/5")
+        div.max-w-7xl.mx-auto.px-4.relative.z-10(class="sm:px-6 lg:px-8")
+            div.grid.gap-16.items-center(class="md:grid-cols-2")
+                div
+                    h2.text-3xl.font-bold.mb-6(class="md:text-4xl") About 
+                        span.text-primary WebDev
+                    p.text-gray-300.text-lg.leading-relaxed.mb-8 We are a team of passionate developers and designers dedicated to pushing the boundaries of what's possible on the web. From complex cloud infrastructures to stunning frontend interfaces, we deliver excellence in every line of code.
+                    a(href="/contact" class="inline-flex items-center px-8 py-4 bg-secondary text-dark font-bold rounded-full hover:bg-white transition-colors") Get in Touch
+                        svg(class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24")
+                            path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3")
+                
+                div.relative
+                    div.aspect-square.rounded-2xl.bg-gradient-to-tr.from-primary.to-secondary.opacity-20.absolute.inset-0.blur-2xl
+                    div.aspect-square.rounded-2xl.overflow-hidden.border.backdrop-blur-sm.relative(class="border-white/10")
+                        img(src="/images/background/about-us.jpg" alt="About WebDev Team" class="w-full h-full object-cover")
+
+block scripts
+    script(src="/js/home.js")
+    script(src="/js/planner.js")
