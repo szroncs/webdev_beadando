@@ -10,7 +10,9 @@ const port = process.env.PORT || 3000;
 app.set("views", path.join(__dirname, "src", "views"));
 app.set("view engine", "pug");
 
-// Middleware - ezt LLM ajánlotta, mivel Go-ban is használok middleware chaining-et ezért egész érthető
+// Middleware
+// CORS - cross origin resource sharing: a FE és a BE nem kell hogy ugyanazon a porton fusson, 
+// express.json() - a request body-t json-ként fogadja a szerver, beépített parser 
 app.use(cors());
 app.use(express.json());
 
